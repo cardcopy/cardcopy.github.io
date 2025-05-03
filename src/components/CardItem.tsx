@@ -83,6 +83,17 @@ const CardItem: React.FC<CardItemProps> = ({ card, onChanged }) => {
                 e.preventDefault();
                 handleLongPress();
             }}
+            onTouchStart={(e) => {
+                (e.target as HTMLElement).dataset.pressTimer = window.setTimeout(() => {
+                    handleLongPress();
+                }, 600).toString();
+            }}
+            onTouchEnd={(e) => {
+                clearTimeout(Number((e.target as HTMLElement).dataset.pressTimer));
+            }}
+            onTouchMove={(e) => {
+                clearTimeout(Number((e.target as HTMLElement).dataset.pressTimer));
+            }}
         >
             <IonAvatar slot="start">
                 <img src={card.icon} alt={card.title} />
