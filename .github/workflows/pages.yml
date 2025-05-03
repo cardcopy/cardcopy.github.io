@@ -30,6 +30,9 @@ jobs:
       - name: Install deps
         run: npm ci
 
+      - name: Downgrade Rollup to JS‑only build
+        run: npm install rollup@4.14.1 --save-exact --no-package-lock
+
       - name: Build PWA
         run: npm run build
 
