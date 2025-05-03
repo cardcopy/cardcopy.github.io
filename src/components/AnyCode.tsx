@@ -1,0 +1,38 @@
+import React, { useRef, useEffect } from 'react';
+import bwipjs from '@bwip-js/browser';
+
+export interface AnyCodeProps {
+    value: string;
+    format: string;
+}
+
+const AnyCode: React.FC<AnyCodeProps> = ({ value, format }) => {
+    const canvasRef = useRef<HTMLCanvasElement>(null);
+
+    useEffect(() => {
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+
+        const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        const backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--ion-background-color').trim();
+
+        try {
+            bwipjs.toCanvas(canvas, {
+                bcid: format,
+                text: value,
+                scale: 5,
+                includetext: true,
+                backgroundcolor: isDark ? backgroundColor : 'FFFFFF',
+                barcolor: isDark ? 'FFFFFF' : '000000',
+                textcolor: isDark ? 'FFFFFF' : '000000'
+            });
+        } catch (e) {
+            console.error('bwip-js render error:', e);
+        }
+    }, [value, format]);
+
+    return <canvas ref={canvasRef} style={{width: '100%'}} />;
+};
+
+export default AnyCode;
