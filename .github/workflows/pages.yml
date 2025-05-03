@@ -24,14 +24,11 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 18
           cache: npm
 
       - name: Install deps
-        run: npm i
-
-      - name: Build PWA
-        run: npm run build
+        run: npm i && npm run build
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
