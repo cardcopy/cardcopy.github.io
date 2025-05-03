@@ -35,7 +35,7 @@ const Show: React.FC = () => {
     return (
         <IonPage>
             <IonHeader>
-                <IonToolbar>
+                <IonToolbar color="transparent">
                     <IonButtons slot="start">
                         <IonBackButton defaultHref="/" text={"Назад"} />
                     </IonButtons>
@@ -60,7 +60,7 @@ const Show: React.FC = () => {
                 )}
 
                 {!loading && card && (
-                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', paddingLeft: '1vw', paddingRight: '1vw' }}>
                         <AnyCode format={card.format} value={card.text} />
                     </div>
                 )}

@@ -19,9 +19,9 @@ import '@ionic/react/css/palettes/dark.system.css';
 /* Theme variables */
 import './theme/variables.css';
 import List from "./pages/List";
-import New from "./pages/New";
 import Select from "./pages/Select";
 import Show from "./pages/Show";
+import Scan from "./pages/Scan";
 
 setupIonicReact();
 
@@ -35,11 +35,11 @@ const App: React.FC = () => (
         <Route exact path="/select">
           <Select />
         </Route>
+        <Route exact path="/scan">
+          <Scan />
+        </Route>
         <Route exact path="/list">
           <List />
-        </Route>
-        <Route exact path="/new">
-          <New />
         </Route>
         <Route exact path="/">
           <Redirect to="/list" />

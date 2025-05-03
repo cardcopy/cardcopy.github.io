@@ -7,6 +7,7 @@ import {
 import {add, camera, image} from 'ionicons/icons';
 
 import FileInput from "./FileInput";
+import {useHistory} from "react-router";
 
 function buildPicker(onCamera: () => any, onFile: () => any) {
     return {
@@ -30,10 +31,11 @@ function buildPicker(onCamera: () => any, onFile: () => any) {
 const AddCardButton: React.FC = () => {
     const [present] = useIonActionSheet();
     const fileInputRef = useRef<HTMLInputElement>(null);
+    const history = useHistory();
 
     function openPicker() {
         return present(buildPicker(
-            () => window.location.assign('/scan'),
+            () => history.push("/scan", {}),
             () => fileInputRef.current?.click()
         ))
     }
