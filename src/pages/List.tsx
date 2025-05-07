@@ -6,7 +6,7 @@ import {
     IonContent,
     IonList,
     IonButtons,
-    useIonViewWillEnter
+    useIonViewWillEnter, IonFooter, IonText
 } from '@ionic/react';
 
 import React, { useState } from "react";
@@ -16,6 +16,7 @@ import CardItem from "../components/CardItem";
 
 const List: React.FC = () => {
     const [cards, setCards] = useState<Card[]>([]);
+    const appVersion = import.meta.env.VITE_APP_VERSION || 'Local env';
 
     useIonViewWillEnter(() => {
         loadCards();
@@ -46,6 +47,14 @@ const List: React.FC = () => {
                     </IonList>
                 }
             </IonContent>
+
+            <IonFooter>
+                <IonToolbar color="transparent">
+                    <IonText style={{ display: 'block', textAlign: 'center', fontSize: '0.9em', color: '#666' }}>
+                        Версия: {appVersion}
+                    </IonText>
+                </IonToolbar>
+            </IonFooter>
         </IonPage>
     );
 };

@@ -1,7 +1,7 @@
 {
   "name": "cardcopy",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -49,5 +49,5 @@
     "vite-plugin-pwa": "^1.0.0",
     "vitest": "^0.34.6"
   },
-  "description": "An Ionic project"
+  "description": "Project to store all codes in one app"
 }

@@ -1,41 +1,22 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
+import { version } from './package.json';
 
 export default defineConfig({
   base: '/',
   build: {
     sourcemap: false
   },
+  define: {
+    'import.meta.env.VITE_APP_VERSION': JSON.stringify(version)
+  },
   plugins: [
     react(),
     VitePWA({
       registerType: 'autoUpdate',
       workbox: {
-        globPatterns: ['**/*.{js,css,html,png,jpg,svg,ico,woff,woff2,ttf,eot}'],
-        globIgnores: ['manifest.webmanifest', 'service-worker.js'],
-        runtimeCaching: [
-          {
-            urlPattern: ({ request }) =>
-                request.destination === 'document' ||
-                request.destination === 'script' ||
-                request.destination === 'style' ||
-                request.destination === 'image' ||
-                request.destination === 'font',
-            handler: 'CacheFirst',
-            options: {
-              cacheName: 'app-resources',
-              expiration: {
-                maxEntries: Infinity,
-                maxAgeSeconds: Infinity,
-              },
-            },
-          },
-          {
-            urlPattern: ({ url }) => url.pathname === '/manifest.webmanifest',
-            handler: 'NetworkOnly'
-          },
-        ],
+        maximumFileSizeToCacheInBytes: 10000000
       },
       manifest: {
         name: 'cardcopy',
