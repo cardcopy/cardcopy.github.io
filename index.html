@@ -6,7 +6,7 @@
     
     <base href="/" />
     
-    <meta name="color-scheme" content="light dark" />
+    <meta name="color-scheme" content="light" />
     <meta
       name="viewport"
       content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
@@ -23,13 +23,6 @@
     <meta name="apple-mobile-web-app-title" content="Card Copy" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   </head>
-  <script>
-    (function () {
-      const dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const color = dark ? '#000000' : '#ffffff';
-      document.getElementById('themeColor').setAttribute('content', color);
-    })();
-  </script>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>

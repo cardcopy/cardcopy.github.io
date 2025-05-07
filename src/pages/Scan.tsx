@@ -9,11 +9,7 @@ import {
 } from '@ionic/react';
 import { BrowserMultiFormatReader } from '@zxing/browser';
 import { useHistory } from 'react-router';
-
-const FORMAT_MAP: Record<string, string> = {
-    '11': 'qrcode',
-    '14': 'upca'
-};
+import FORMAT_MAP from "../service/formatMap";
 
 const Scan: React.FC = () => {
     const videoRef = useRef<HTMLVideoElement>(null);

@@ -2,11 +2,7 @@ import { forwardRef } from 'react';
 import { BrowserMultiFormatReader } from '@zxing/browser';
 import { useHistory } from 'react-router';
 import {useIonAlert} from "@ionic/react";
-
-const FORMAT_MAP: Record<string, string> = {
-    '11': 'qrcode',
-    '14': 'upca'
-};
+import FORMAT_MAP from "../service/formatMap";
 
 const FileInput = forwardRef<HTMLInputElement, {}>((_, ref) => {
     const history = useHistory();

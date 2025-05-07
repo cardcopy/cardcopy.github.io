@@ -11,6 +11,32 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
+      workbox: {
+        globPatterns: ['**/*.{js,css,html,png,jpg,svg,ico,woff,woff2,ttf,eot}'],
+        globIgnores: ['manifest.webmanifest', 'service-worker.js'],
+        runtimeCaching: [
+          {
+            urlPattern: ({ request }) =>
+                request.destination === 'document' ||
+                request.destination === 'script' ||
+                request.destination === 'style' ||
+                request.destination === 'image' ||
+                request.destination === 'font',
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'app-resources',
+              expiration: {
+                maxEntries: Infinity,
+                maxAgeSeconds: Infinity,
+              },
+            },
+          },
+          {
+            urlPattern: ({ url }) => url.pathname === '/manifest.webmanifest',
+            handler: 'NetworkOnly'
+          },
+        ],
+      },
       manifest: {
         name: 'cardcopy',
         short_name: 'Card Copy',

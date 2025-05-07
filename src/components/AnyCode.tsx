@@ -13,19 +13,15 @@ const AnyCode: React.FC<AnyCodeProps> = ({ value, format }) => {
         const canvas = canvasRef.current;
         if (!canvas) return;
 
-        const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-        const backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--ion-background-color').trim();
-
         try {
             bwipjs.toCanvas(canvas, {
                 bcid: format,
                 text: value,
                 scale: 5,
                 includetext: true,
-                backgroundcolor: isDark ? backgroundColor : 'FFFFFF',
-                barcolor: isDark ? 'FFFFFF' : '000000',
-                textcolor: isDark ? 'FFFFFF' : '000000'
+                backgroundcolor: 'FFFFFF',
+                barcolor: '000000',
+                textcolor: '000000'
             });
         } catch (e) {
             console.error('bwip-js render error:', e);
